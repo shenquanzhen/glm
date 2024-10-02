@@ -23,3 +23,18 @@ textarea {
   padding: 10px;
   min-height: 50px;
 }
+
+#apiKeyContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#apiKey {
+  flex-grow: 1;
+  margin-right: 5px;
+}
+
+#saveKey, #changeKey {
+  white-space: nowrap;
+}

@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   const apiKeyInput = document.getElementById('apiKey');
   const saveKeyButton = document.getElementById('saveKey');
+  const changeKeyButton = document.getElementById('changeKey');
   const userInput = document.getElementById('userInput');
   const submitButton = document.getElementById('submit');
   const responseDiv = document.getElementById('response');
@@ -17,20 +18,45 @@ document.addEventListener('DOMContentLoaded', function() {
 5. 确保回应选项能够助用户克服词穷，提供有启发性的表达方式。
 请确保每次的解读和回应都是根据具体情境生成的，而不是固定的模板。你的目标是给予用户类似乙游的体验，让他们在选择回应时感受到不同选项带来的影响。`;
 
-  // 加载保存的API密钥
+  // 加载保存的API密钥并更新UI
   chrome.storage.sync.get('apiKey', function(data) {
     if (data.apiKey) {
-      apiKeyInput.value = data.apiKey;
+      hideApiKeyInput();
     }
   });
 
   // 保存API密钥
   saveKeyButton.addEventListener('click', function() {
     const apiKey = apiKeyInput.value;
-    chrome.storage.sync.set({apiKey: apiKey}, function() {
-      alert('API key saved');
-    });
+    if (apiKey) {
+      chrome.storage.sync.set({apiKey: apiKey}, function() {
+        alert('API key saved');
+        hideApiKeyInput();
+      });
+    } else {
+      alert('Please enter an API key');
+    }
   });
+
+  // 显示更改API密钥的输入框
+  changeKeyButton.addEventListener('click', function() {
+    showApiKeyInput();
+  });
+
+  // 隐藏API密钥输入框,显示更改按钮
+  function hideApiKeyInput() {
+    apiKeyInput.style.display = 'none';
+    saveKeyButton.style.display = 'none';
+    changeKeyButton.style.display = 'inline-block';
+  }
+
+  // 显示API密钥输入框,隐藏更改按钮
+  function showApiKeyInput() {
+    apiKeyInput.style.display = 'inline-block';
+    apiKeyInput.value = '';
+    saveKeyButton.style.display = 'inline-block';
+    changeKeyButton.style.display = 'none';
+  }
 
   // 提交请求
   submitButton.addEventListener('click', function() {
