@@ -1,0 +1,25 @@
+body {
+  width: 300px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+input, textarea, button {
+  margin-bottom: 10px;
+}
+
+textarea {
+  height: 100px;
+}
+
+#response {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-height: 50px;
+}

@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "GLM-4 API Tester",
+  "version": "1.0",
+  "description": "A simple Chrome extension to test GLM-4 API",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://open.bigmodel.cn/"
+  ]
+}
